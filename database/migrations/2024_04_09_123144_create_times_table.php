@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('end_times', function (Blueprint $table) {
+        Schema::create('times', function (Blueprint $table) {
             $table->id();
             $table->string('short-name');
-            $table->string('date');
-            $table->string('end-time');
+            $table->date('date');
+            $table->time('start-time', 3);
+            $table->time('end-time', 3);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('end_times');
+        Schema::dropIfExists('times');
     }
 };

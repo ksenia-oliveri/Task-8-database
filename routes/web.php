@@ -7,4 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/report', [ReportController::class, 'index']);
+Route::get('/report/create', [ReportController::class, 'create']);
+
+Route::get('/report/show', [ReportController::class, 'read']);
