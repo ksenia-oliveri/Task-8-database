@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Driver;
-use App\Models\StartTime;
-use App\Models\EndTime;
 use App\Models\Time;
+use App\Services\ReportService;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -17,7 +17,7 @@ class ReportController extends Controller
         {
             $names = explode('_', $line);
             Driver::create([
-                'short-name' => $names[0],
+                'shortName' => $names[0],
                 'name' => $names[1],
                 'car' => $names[2],
             ]);
@@ -34,16 +34,20 @@ class ReportController extends Controller
                 if($startLine[0] == $endLine[0])
                 {
                     Time::create([
-                        'short-name' => mb_substr($endLine[0], 0, 3),
+                        'shortName' => mb_substr($endLine[0], 0, 3),
                         'date' => mb_substr($endLine[0], 3),
-                        'start-time' => $startLine[1],
-                        'end-time' => $endTime]);
+                        'startTime' => $startLine[1],
+                        'endTime' => $endTime]);
                 }
+            }    
+        }    
+        //dd('done');
+    }
 
-            }
-            
-        }
-        
-        dd('done');
+    public function read()
+    {   
+        $obj = new ReportService();
+        $report = $obj->GetData();
+        return view('report', ['report' => $report]);    
     }
 }
