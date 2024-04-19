@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Driver;
 use App\Models\Time;
 use App\Services\ReportService;
-use DateTime;
-use Illuminate\Support\Facades\DB;
+
 
 class ReportController extends Controller
 {
@@ -44,10 +43,24 @@ class ReportController extends Controller
         //dd('done');
     }
 
-    public function read()
+    public function getReport()
     {   
         $obj = new ReportService();
         $report = $obj->GetData();
         return view('report', ['report' => $report]);    
+    }
+
+    public function getDriversList()
+    {
+        $obj = new ReportService();
+        $drivers = $obj->GetData();
+        return view('drivers', ['drivers' => $drivers]);
+    }
+
+    public function getDriverInfo()
+    {
+        $obj = new ReportService();
+        $driverInfo = $obj->GetData();
+        return view('driversInfo', ['driverInfo' => $driverInfo, 'driver_id' => request('driver_id')]);
     }
 }
