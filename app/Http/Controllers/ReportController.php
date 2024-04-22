@@ -40,7 +40,8 @@ class ReportController extends Controller
                 }
             }    
         }    
-        //dd('done');
+        return 'Database successfully created';
+        
     }
 
     public function getReport()

@@ -7,11 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/report/create', [ReportController::class, 'create']);
+Route::get('/report/create', [ReportController::class, 'create'])->name('report.create');
 
-Route::get('/report/show', [ReportController::class, 'getReport']);
+Route::get('/report/show', [ReportController::class, 'getReport'])->name('report.show');
 
-Route::get('/report/show/drivers', [ReportController::class, 'getDriversList']);
+Route::get('/report/show/drivers', [ReportController::class, 'getDriversList'])->name('report.show.drivers');
 
 Route::get('/report/show/drivers/info', [ReportController::class, 'getDriverInfo'])->name('report.drivers.info');
 
