@@ -33,6 +33,8 @@ class ParseDataCommand extends Command
         {
             $obj = new ReportController();
             $obj->create();
+            
+            $this->info('Database successfully created');
         }
             
     }
